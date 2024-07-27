@@ -1,55 +1,48 @@
-import {FlatList, Platform, Pressable, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import { Button, StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import { NavigationContainer, useNavigation } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+
+
+const Stack = createStackNavigator();
 
 const App = () => {
-  const data = [
-    {
-      id: 0,
-      name: 'John Doe',
-      age: 30,
-    },
-    {
-      id: 1,
-      name: 'Jane Doe',
-      age: 25,
-    },
-    {
-      id: 2,
-      name: 'Mike Doe',
-      age: 28,
-    },
-    {
-      id: 3,
-      name: 'Sarah Doe',
-      age: 32,
-    },
-  ];
   return (
-    <View>
-      <Text>App for test</Text>
-     <Pressable onPress={() => console.log("the press")} onLongPress={() => console.log("this is the long prese")}>
-      <Text>This is {Platform.OS}</Text>
-     </Pressable>
-    </View>
-  );
-};
+   <NavigationContainer>
+    <Stack.Navigator screenOptions={{headerTitleStyle : {color : "green"}}}>
+      <Stack.Screen name="Login" component={LoginScreen} options={{headerTitleStyle : {color : "green"}}} />
+      <Stack.Screen name="Home" component={HomeScreen} />
+    </Stack.Navigator>
+   </NavigationContainer>
+  )
+}
 
-export default App;
+export default App
+
+
+const LoginScreen = ({navigation}) => {
+  const hookNavigation = useNavigation();
+  return (
+    <View style={styles.container}>
+      <Text>Login Screen</Text>
+      <Button title={"home"} onPress={() => { hookNavigation.navigate("Home")}}  />
+    </View>
+  )
+}
+
+const HomeScreen = () => {
+  return (
+    <View style={styles.container}>
+      <Text>Home Screen</Text>
+    </View>
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    display: 'flex',
-    flexDirection: 'row',
-    padding: 10,
-    marginBottom: 10,
-    borderWidth: 1,
-    borderColor: '#ddd',
-    backgroundColor: '#aaa',
+    backgroundColor: '#000',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
   },
-  text: {
-    display: 'flex',
-  },
-});
+})
