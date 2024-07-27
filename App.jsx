@@ -1,4 +1,4 @@
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {FlatList, Platform, Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
 const App = () => {
@@ -27,13 +27,9 @@ const App = () => {
   return (
     <View>
       <Text>App for test</Text>
-      {data.map((item, index) => {
-        return (
-          <View key={index} style={styles.container}>
-            <Text style={{color: '#aaa'}}>{item.age}</Text>
-          </View>
-        );
-      })}
+     <Pressable onPress={() => console.log("the press")} onLongPress={() => console.log("this is the long prese")}>
+      <Text>This is {Platform.OS}</Text>
+     </Pressable>
     </View>
   );
 };
