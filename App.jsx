@@ -25,15 +25,17 @@ const LoginScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Text>Login Screen</Text>
-      <Button title={"home"} onPress={() => { hookNavigation.navigate("Home")}}  />
+      <Button title={"home"} onPress={() => { hookNavigation.navigate("Home", {name : "Jaimin rathwa", age : 22})}}  />
     </View>
   )
 }
 
-const HomeScreen = () => {
+const HomeScreen = ({navitation, route}) => {
+  console.log({route : route.params});
   return (
     <View style={styles.container}>
       <Text>Home Screen</Text>
+      <Text h1 style={{color: "white"}}>Hello' {route?.params?.name}</Text>
     </View>
   )
 }
